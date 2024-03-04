@@ -101,11 +101,23 @@
 
         {% for resolution in resolutions %}
         <tr>
-            <td scope="row"> {{ forloop.counter}}</td>
+            <td scope="row"> {{ forloop.counter }}</td>
 
             <td>{{ resolution }}</td>
             <td>
-                <button type="button" class="btn btn-success">Download {{resolution}}</button>
+
+                {{ url_from_user }}
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <input type="hidden" name="url_from_user" value="{{ url_from_user }}">
+                    <input type="hidden" name="resolution" value="{{ resolution }}">
+
+                    <button type="submit" class="btn btn-success">Download {{ resolution }}</button>
+
+                </form>
+
+
             </td>
         </tr>
 
